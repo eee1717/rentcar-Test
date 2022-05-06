@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import com.korea.dto.AuthDTO;
 
 
-public class AuthDAO {
+public class AuthDAO  {
 	private String driver = "com.mysql.cj.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/logindb";
 	private String user = "root";
