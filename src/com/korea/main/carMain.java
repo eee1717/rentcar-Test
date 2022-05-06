@@ -3,6 +3,7 @@ package com.korea.main;
 import com.korea.controller.FrontController;
 import com.korea.domain.*;
 import com.korea.dto.CarDTO;
+import com.korea.view.Viewer;
 
 public class carMain {
 
@@ -14,11 +15,12 @@ public class carMain {
 //		
 //		dao.Insert(dto1);
 //		dao.Insert(dto2);
-		FrontController controller = new FrontController();
-		CarDTO dto = new CarDTO("49하1011","벤츠","4인승","yellow");
-		controller.SubConExecute("CAR",2,dto);
+//		FrontController controller = new FrontController();
+//		CarDTO dto = new CarDTO("49하1011","벤츠","4인승","yellow");
+//		controller.SubConExecute("CAR",2,dto);
 	
-
+		Viewer viewer = new Viewer();
+		viewer.CarMenu();
 	}
 
 }

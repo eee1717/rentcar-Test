@@ -21,12 +21,13 @@ public class FrontController {
 		
 	}
 
-	public void SubConExecute(String menu, int num, DTO dto) {
+	public boolean SubConExecute(String menu, int num, DTO dto) {
 		if(menu.equals("CAR")) {
 			SubController sub = map.get("CAR");
-			sub.execute(num, dto); 
+			return sub.execute(num, dto); 
 		}else if (menu.equals("EMPIOYEE")){
 		}else if(menu.equals("MEMBER")) {
 		}
+		return false;
 	}
 }

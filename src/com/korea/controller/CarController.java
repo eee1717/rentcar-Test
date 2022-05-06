@@ -13,7 +13,7 @@ public class CarController implements  SubController {
 			
 			
 		}else if(num==2) {
-			service.Insert(cdto);
+			return service.Insert(cdto);
 			
 		}else if(num==3) {
 			
