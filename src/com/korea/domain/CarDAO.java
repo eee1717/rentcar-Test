@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.korea.dto.CarDTO;
+
 public class CarDAO {
 	
 	// 연결관련 정보 저장용 변수
@@ -36,7 +38,8 @@ public class CarDAO {
 		}
 		
 		
-		public void Select() {}
+		public boolean Select() {
+			return false;}
 		
 		public boolean Insert(CarDTO dto) {
 			

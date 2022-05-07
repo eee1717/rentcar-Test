@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import com.korea.dto.AuthDTO;
 
 
-public class AuthDAO {
+public class AuthDAO  {
 	private String driver = "com.mysql.cj.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/logindb";
 	private String user = "root";
@@ -31,12 +31,14 @@ public class AuthDAO {
 	int result;
 	public void login(AuthDTO dto) {
 		try {
-			pstmt=conn.prepareStatement("select * from member");
-			rs=pstmt.executeQuery();	//rs:resultset의 객체 
+			pstmt = conn.prepareStatement("select id,pw from member_tbl where id=?");
+			pstmt.setString(1, dto.getId());
+			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {//rs.next(): resultset의 객체 위치로 이동
-				pstmt.setString(1, dto.getId());
-				pstmt.setString(2, dto.getPw());
+			String tid=null; String tpw=null;
+			while(rs.next()) {
+				tid=rs.getString("id");
+				tpw=rs.getString("pw");
 				
 				if(result!=0) {
 					System.out.println("로그인실패!");

@@ -1,6 +1,6 @@
-package com.korea.domain;
+package com.korea.dto;
 
-public class CarDTO {
+public class CarDTO extends DTO{
 	
 	public String Car_Code;
 	public String Car_Name;

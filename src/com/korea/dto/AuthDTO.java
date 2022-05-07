@@ -1,6 +1,7 @@
 package com.korea.dto;
 
-public class AuthDTO {
+
+public class AuthDTO extends DTO{
 	
 	private String id;
 	private String pw;
