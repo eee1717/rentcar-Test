@@ -1,22 +1,28 @@
 package com.korea.controller;
 
 import com.korea.dto.AuthDTO;
+import com.korea.dto.DTO;
 import com.korea.service.AuthService;
+import com.korea.view.Viewer;
 
-public class AuthController implements SubController {
-	AuthService service = new AuthService();
+public class AuthController implements SubController
+{
+    AuthService service = new AuthService();
+    @Override
+    public boolean execute(int num, DTO dto, Viewer view)
+    {
+        AuthDTO adto = (AuthDTO) dto; // 다운캐스팅
 
-	@Override
-	public void execute(int num, AuthDTO dto) {
-		switch(num) {
-		case 1 : //회원로그인
-			service.login(dto);
-			break;
-		case 2 : //회원가입
-			service.SignUp(dto);
-			break;
-		case 3 : //관리자로그인
-			break;
-		}		
-	}
+        if(num == 1)
+        {
+            //회원로그인
+            return service.MemberLogin(adto);
+        }
+        else if(num == 2)
+        {
+            //직원로그인
+            return service.EmployeeLogin(adto);
+        }
+        return false;
+    }
 }

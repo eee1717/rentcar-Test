@@ -1,7 +1,9 @@
 package com.korea.controller;
 
-import com.korea.dto.AuthDTO;
+import com.korea.dto.DTO;
+import com.korea.view.Viewer;
 
-public interface SubController {
-	 void execute(int num, AuthDTO dto);
+public interface SubController
+{
+    boolean execute(int num, DTO dto, Viewer view);
 }
