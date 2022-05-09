@@ -2,6 +2,9 @@ package com.korea.domain;
 
 import com.korea.dto.AuthDTO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class AuthDAO extends DAO
 {
     public AuthDAO()
@@ -128,6 +131,55 @@ public class AuthDAO extends DAO
             if(result != 0)
             {
                 return true;    // Insert 성공
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public ResultSet MemberSelect()
+    {
+        try
+        {
+            pstmt = conn.prepareStatement("select * from member_tbl");
+            rs = pstmt.executeQuery();
+            return rs;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet MemberSearch(AuthDTO dto)
+    {
+        try
+        {
+            pstmt = conn.prepareStatement("select * from member_tbl where Member_id like ?");
+            pstmt.setString(1, dto.getId());
+            rs = pstmt.executeQuery();
+            return rs;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean MemberDelete(AuthDTO dto)
+    {
+        try
+        {
+            pstmt = conn.prepareStatement("delete from member_tbl where Member_id = ?");
+            pstmt.setString(1, dto.getId());
+            int result = pstmt.executeUpdate();
+            if(result != 0)
+            {
+                return true;
             }
         }
         catch(Exception e)

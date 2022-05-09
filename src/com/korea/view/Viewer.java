@@ -34,7 +34,7 @@ public class Viewer
                     String tmpid = sc.next();
                     String tmppw = sc.next();
                     AuthDTO dto = new AuthDTO(tmpid, tmppw);
-                    boolean r1 = controller.SubControllerEX("Auth", 1, dto,this);
+                    boolean r1 = controller.SubControllerEX("Auth", 1, dto, this);
                     if(r1)
                     {
                         //인증성공 -> 회원메뉴 출력
@@ -50,12 +50,30 @@ public class Viewer
                     String tmpid2 = sc.next();
                     String tmppw2 = sc.next();
                     AuthDTO dto2 = new AuthDTO(tmpid2, tmppw2);
-                    boolean r2 = controller.SubControllerEX("Auth", 2, dto2,this);
+                    boolean r2 = controller.SubControllerEX("Auth", 2, dto2, this);
                     if(r2)
                     {
-                        //인증성공 -> 직원 메뉴 출력
                         System.out.println("로그인 성공!");
-                        CarMenu();
+                        System.out.println("--------------Employee--------------");
+                        System.out.println("1 차량관리");
+                        System.out.println("2 회원관리");
+                        System.out.println("3 뒤로 가기");
+                        System.out.println("--------------Employee--------------");
+                        System.out.print("번호: ");
+                        num = sc.nextInt();
+                        switch(num)
+                        {
+                            case 1:
+                                CarMenu();
+                                break;
+                            case 2:
+                                MemberMenu();
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                System.out.println("잘못 입력하셨습니다");
+                        }
                     }
                     else
                     {
@@ -100,6 +118,53 @@ public class Viewer
         }
     }
 
+    public void MemberMenu()
+    {
+        while(true)
+        {
+            System.out.println("--------------Member--------------");
+            System.out.println("1 전체회원조회");
+            System.out.println("2 회원 검색");
+            System.out.println("3 회원정보삭제");
+            System.out.println("4 뒤로 가기");
+            System.out.println("--------------Member--------------");
+            System.out.print("번호: ");
+            num = sc.nextInt();
+            switch(num)
+            {
+                case 1:
+                    boolean result1 = controller.SubControllerEX("Member", 1, null, this);
+                    break;
+                case 2:
+                    System.out.print("회원 ID 입력 > ");
+                    String Member_id2 = sc.next();
+                    AuthDTO dto2 = new AuthDTO(Member_id2);
+                    boolean result2 = controller.SubControllerEX("Member", 2, dto2, this);
+                    break;
+                case 3:
+                    System.out.print("삭제할 회원 ID 입력 > ");
+                    String Member_id3 = sc.next();
+                    AuthDTO dto3 = new AuthDTO(Member_id3);
+                    boolean result3 = controller.SubControllerEX("Member", 3, dto3, this);
+                    if(result3)
+                    {
+                        System.out.println("삭제 완료!");
+                    }
+                    else
+                    {
+                        System.out.println("삭제 실패!");
+                    }
+                    break;
+                case 4:
+                    LoginMenu();
+                    break;
+                default:
+                    System.out.println("잘못 입력하셨습니다");
+            }
+        }
+
+    }
+
     public void CarMenu()
     {
         while(true)
@@ -133,7 +198,7 @@ public class Viewer
                     String Car_Color3 = sc.next();
                     int Car_Price3 = sc.nextInt();
                     CarDTO dto3 = new CarDTO(Car_Code3, Car_Name3, Car_Person3, Car_Color3, Car_Price3);
-                    boolean result3= controller.SubControllerEX("Car", 3, dto3, this);
+                    boolean result3 = controller.SubControllerEX("Car", 3, dto3, this);
                     if(result3)
                     {
                         System.out.println("등록 완료!");

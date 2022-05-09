@@ -10,6 +10,12 @@ public class AuthDTO extends DTO
     private String addr;
     private String license;
     private String level;
+
+    public AuthDTO(String id)
+    {
+        this.id = id;
+    }
+
     public AuthDTO(String id, String pw)
     {
         this.id = id;
