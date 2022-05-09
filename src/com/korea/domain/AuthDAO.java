@@ -1,78 +1,112 @@
 package com.korea.domain;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import com.korea.dto.AuthDTO;
 
+public class AuthDAO extends DAO
+{
+    public AuthDAO()
+    {
+    }
 
-public class AuthDAO  {
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/logindb";
-	private String user = "root";
-	private String pw = "1234";
-	//연결객체 정보
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
-	private Connection conn = null;
-	//생성자(객체 생성시 DBMS 연결)
-	public AuthDAO (){
-		try {
-			Class.forName(driver);
-			System.out.println("Driver Loading Success");
-			conn = DriverManager.getConnection(url,user,pw);
-			System.out.println("DBConnected....");
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	int result;
-	public void login(AuthDTO dto) {
-		try {
-			pstmt = conn.prepareStatement("select id,pw from member_tbl where id=?");
-			pstmt.setString(1, dto.getId());
-			rs = pstmt.executeQuery();
-			
-			String tid=null; String tpw=null;
-			while(rs.next()) {
-				tid=rs.getString("id");
-				tpw=rs.getString("pw");
-				
-				if(result!=0) {
-					System.out.println("로그인실패!");
-				}else {
-					System.out.println("로그인완료..");
-				}
-				
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {pstmt.close();} catch(Exception e) {e.printStackTrace();}
-		}
-	}
-	
-	public void SignUp(AuthDTO dto) {
-		try {
-			pstmt=conn.prepareStatement("insert into member values(?,?)");
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
-			result = pstmt.executeUpdate();
-			
-			if(result!=0) {
-				System.out.println("가입완료!");
-			}else {
-				System.out.println("가입실패..");
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {pstmt.close();} catch(Exception e) {e.printStackTrace();}
-		}
-	}
-	
+    //회원로그인(num = 1)
+    public boolean MemberLogin(AuthDTO dto)
+    {
+        try
+        {
+            pstmt = conn.prepareStatement("select member_id,member_pw from member_tbl where member_id=?");
+            pstmt.setString(1, dto.getId());
+            rs = pstmt.executeQuery();
+
+            String tid = null;
+            String tpw = null;
+            while(rs.next())
+            {
+                tid = rs.getString("member_id");
+                tpw = rs.getString("member_pw");
+            }
+            //검증
+            if(tid != null && tpw != null)
+            {
+                if(tid.equals(dto.getId()) && tpw.equals(dto.getPw()))
+                {
+                    return true;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    //직원로그인(num = 2)
+    public boolean EmployeeLogin(AuthDTO dto)
+    {
+        try
+        {
+            pstmt = conn.prepareStatement("select Employee_id,Employee_pw from employee_tbl where Employee_id=?");
+            pstmt.setString(1, dto.getId());
+            rs = pstmt.executeQuery();
+
+            String tid = null;
+            String tpw = null;
+            while(rs.next())
+            {
+                tid = rs.getString("employee_id");
+                tpw = rs.getString("employee_pw");
+            }
+            //검증
+            if(tid != null && tpw != null)
+            {
+                if(tid.equals(dto.getId()) && tpw.equals(dto.getPw()))
+                {
+                    return true;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 }
