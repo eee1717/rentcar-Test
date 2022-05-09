@@ -1,5 +1,6 @@
 package com.korea.main;
 
+import com.korea.view.GUIViewer;
 import com.korea.view.Viewer;
 
 public class Main

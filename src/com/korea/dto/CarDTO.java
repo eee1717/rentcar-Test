@@ -23,6 +23,11 @@ public class CarDTO extends DTO
         Car_Code = car_code;
     }
 
+    public CarDTO(String car_name, int i)
+    {
+        Car_Name = car_name;
+    }
+
     public String getCar_Code()
     {
         return Car_Code;

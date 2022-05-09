@@ -18,4 +18,10 @@ public class AuthService
     {
         return dao.EmployeeLogin(dto);
     }
+
+    //회원가입
+    public boolean MemberSignUp(AuthDTO dto)
+    {
+        return dao.MemberSignUp(dto);
+    }
 }

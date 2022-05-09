@@ -109,4 +109,31 @@ public class AuthDAO extends DAO
         }
         return false;
     }
+
+    public boolean MemberSignUp(AuthDTO dto)
+    {
+        try
+        {
+            pstmt = conn.prepareStatement("insert into member_tbl values(?,?,?,?,?,?,?)");
+            pstmt.setString(1, dto.getId());
+            pstmt.setString(2, dto.getPw());
+            pstmt.setString(3, dto.getName());
+            pstmt.setInt(4, dto.getAge());
+            pstmt.setString(5,dto.getPhone());
+            pstmt.setString(6,dto.getAddr());
+            pstmt.setString(7,dto.getLicense());
+
+            int result = pstmt.executeUpdate();
+
+            if(result != 0)
+            {
+                return true;    // Insert 성공
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
