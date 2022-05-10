@@ -77,6 +77,7 @@ public class Viewer
             System.out.println("2 Insert");
             System.out.println("3 Update");
             System.out.println("4 Delete");
+            System.out.println("5 Prev");
             System.out.println("--------------Car--------------");
             System.out.print("번호: ");
             num = sc.nextInt();
@@ -144,6 +145,9 @@ public class Viewer
                         System.out.println("삭제 실패!");
                     }
                     break;
+                case 5:
+                	System.out.println("로그인창으로 돌아갑니다.");
+                	return;
                 default:
                     System.out.println("잘못입력하셨습니다.");
             }
