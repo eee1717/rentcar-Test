@@ -98,18 +98,20 @@ public class registerGUI extends JFrame implements ActionListener{
 }
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
+		
+		
 		
 		if(e.getSource() == exit) {
-			System.out.println("회원가입창에서 종료버튼 클릭!");
-			System.exit(-1);
+			System.out.println("회원가입창에서 뒤로가기버튼 클릭!");
+			setVisible(false);
 		}
 		
 		if(e.getSource() == register) {
 			System.out.println("회원가입 버튼 클릭!");
 			JOptionPane.showMessageDialog(null, "회원가입 성공");
-			MainLogin ml = new MainLogin();
-			super.setVisible(false);
+			setVisible(false);
 			
 		}
 		
