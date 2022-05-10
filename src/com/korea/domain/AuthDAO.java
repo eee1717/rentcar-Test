@@ -2,6 +2,8 @@ package com.korea.domain;
 
 import com.korea.dto.AuthDTO;
 
+import java.sql.ResultSet;
+
 public class AuthDAO extends DAO
 {
     public AuthDAO()
@@ -109,4 +111,10 @@ public class AuthDAO extends DAO
         }
         return false;
     }
+
+
+
+
+
+
 }

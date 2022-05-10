@@ -16,13 +16,54 @@ public class CarService
         try
         {
             rs = dao.Select();
-            System.out.println("------------------------------------------");
-            System.out.println("차량번호\t차종\t인승\t색상\t가격");
-            System.out.println("------------------------------------------");
+            System.out.println("--------------------------------------------------");
+            System.out.println("차량번호\t차종\t인승\t색상\t가격\t대여가능여부");
+            System.out.println("--------------------------------------------------");
             while(rs.next())
             {
-                System.out.println(rs.getString("Car_Code") + "\t" + rs.getString("Car_Name") + "\t" + rs.getString("Car_Person") + "\t\t" + rs.getString("Car_Color") + "\t" + rs.getString("Car_Price"));
+                System.out.print(rs.getString("Car_Code") + "\t" + rs.getString("Car_Name") + "\t" + rs.getString("Car_Person") + "\t\t" + rs.getString("Car_Color") + "\t" + rs.getString("Car_Price") + "\t");
+                String s;
+                if(rs.getInt("Car_Rentable") == 1)
+                {
+                    s = "가능";
+                }
+                else
+                {
+                    s = "불가능";
+                }
+                System.out.println(s);
             }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public boolean SelectSearch(CarDTO dto, Viewer view)
+    {
+        try
+        {
+            rs = dao.SelectSearch(dto);
+            System.out.println("-------------------------------------------------");
+            System.out.println("차량번호\t차종\t인승\t색상\t가격\t대여가능여부");
+            System.out.println("-------------------------------------------------");
+            while(rs.next())
+            {
+                System.out.print(rs.getString("Car_Code") + "\t" + rs.getString("Car_Name") + "\t" + rs.getString("Car_Person") + "\t\t" + rs.getString("Car_Color") + "\t" + rs.getString("Car_Price") + "\t");
+                String s;
+                if(rs.getInt("Car_Rentable") == 1)
+                {
+                    s = "가능";
+                }
+                else
+                {
+                    s = "불가능";
+                }
+                System.out.println(s);
+            }
+
         }
         catch(Exception e)
         {

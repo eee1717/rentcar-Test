@@ -2,7 +2,6 @@ package com.korea.domain;
 
 import com.korea.dto.CarDTO;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -26,11 +25,27 @@ public class CarDAO extends DAO
         return null;
     }
 
+    public ResultSet SelectSearch(CarDTO dto)
+    {
+        try
+        {
+            pstmt = conn.prepareStatement("select * from car_tbl where Car_Name like ?");
+            pstmt.setString(1, dto.getCar_Name());
+            rs = pstmt.executeQuery();
+            return rs;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean Insert(CarDTO dto)
     {
         try
         {
-            pstmt = conn.prepareStatement("insert into car_tbl values(?,?,?,?,?)");
+            pstmt = conn.prepareStatement("insert into car_tbl values(?,?,?,?,?,1)");
             pstmt.setString(1, dto.getCar_Code());
             pstmt.setString(2, dto.getCar_Name());
             pstmt.setInt(3, dto.getCar_Person());
@@ -47,6 +62,25 @@ public class CarDAO extends DAO
         catch(Exception e)
         {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -73,6 +107,25 @@ public class CarDAO extends DAO
         {
             e.printStackTrace();
         }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
         return false;
     }
 
@@ -93,6 +146,25 @@ public class CarDAO extends DAO
         catch(Exception e)
         {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
         return false;
     }

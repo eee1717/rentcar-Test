@@ -2,25 +2,31 @@ package com.korea.dto;
 
 public class CarDTO extends DTO
 {
-
     private String Car_Code;
     private String Car_Name;
     private int Car_Person;
     private String Car_Color;
     private int Car_Price;
+    private int Car_Rentable;
 
-    public CarDTO(String car_Code, String car_Name, int car_Person, String car_Color, int car_Price)
+    public CarDTO(String car_Code, String car_Name, int car_Person, String car_Color, int car_Price, int car_Rentable)
     {
         Car_Code = car_Code;
         Car_Name = car_Name;
         Car_Person = car_Person;
         Car_Color = car_Color;
         Car_Price = car_Price;
+        Car_Rentable = car_Rentable;
     }
 
     public CarDTO(String car_code)
     {
         Car_Code = car_code;
+    }
+
+    public CarDTO(String car_name, int i)
+    {
+        Car_Name = car_name;
     }
 
     public String getCar_Code()
@@ -73,9 +79,19 @@ public class CarDTO extends DTO
         Car_Price = car_Price;
     }
 
+    public int getCar_Rentable()
+    {
+        return Car_Rentable;
+    }
+
+    public void setCar_Rentable(int car_Rentable)
+    {
+        Car_Rentable = car_Rentable;
+    }
+
     @Override
     public String toString()
     {
-        return "CarDTO{" + "Car_Code='" + Car_Code + '\'' + ", Car_Name='" + Car_Name + '\'' + ", Car_Person=" + Car_Person + ", Car_Color='" + Car_Color + '\'' + ", Car_Price=" + Car_Price + '}';
+        return "CarDTO{" + "Car_Code='" + Car_Code + '\'' + ", Car_Name='" + Car_Name + '\'' + ", Car_Person=" + Car_Person + ", Car_Color='" + Car_Color + '\'' + ", Car_Price=" + Car_Price + ", Car_Rentable=" + Car_Rentable + '}';
     }
 }

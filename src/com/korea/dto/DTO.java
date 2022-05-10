@@ -1,5 +1,6 @@
 package com.korea.dto;
 
-public class DTO {
+public class DTO
+{
 
 }

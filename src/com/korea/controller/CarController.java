@@ -17,15 +17,19 @@ public class CarController implements SubController
         {
             return service.Select(cdto, view);
         }
-        else if(num == 2)
+        else if(num ==2)
         {
-            return service.Insert(cdto);
+            return service.SelectSearch(cdto, view);
         }
         else if(num == 3)
         {
-            return service.Update(cdto);
+            return service.Insert(cdto);
         }
         else if(num == 4)
+        {
+            return service.Update(cdto);
+        }
+        else if(num == 5)
         {
             return service.Delete(cdto);
         }

@@ -7,15 +7,16 @@ import com.korea.controller.FrontController;
 import com.korea.dto.AuthDTO;
 
 import java.awt.*;
- 
-public class MainLogin extends JFrame implements ActionListener{
-    
-	FrontController controller = new FrontController();
-	
-	JScrollPane scrollPane;
+
+public class MainLogin extends JFrame implements ActionListener
+{
+
+    FrontController controller = new FrontController();
+
+    JScrollPane scrollPane;
     ImageIcon icon;
-    
-  //로그인 창 관련
+
+    //로그인 창 관련
     //JFrame loginmenu;
     JTextField id;
     JTextField pw;
@@ -41,18 +42,19 @@ public class MainLogin extends JFrame implements ActionListener{
 
     //회원 메뉴 관련
     JFrame membermenu;
-    
-    
- 
-    public MainLogin() {
-    	 
-        super("오래전부터 빌리고 싶었어");  
-        
-        icon = new ImageIcon("C:\\Users\\wjdwl\\OneDrive\\바탕 화면\\밈\\RentCar.png");
+
+
+    public MainLogin()
+    {
+
+        super("오래전부터 빌리고 싶었어");
+
+        icon = new ImageIcon("C:\\Users\\rlatj\\IdeaProjects\\RentalCarProject\\src\\com\\korea\\view\\RentCar.png");
         //배경 Panel 생성후 컨텐츠페인으로 지정      
         JPanel background = new JPanel()
         {
-            public void paintComponent(Graphics g) {
+            public void paintComponent(Graphics g)
+            {
                 // Approach 1: Dispaly image at at full size
                 g.drawImage(icon.getImage(), 0, 0, null);
                 // Approach 2: Scale image to size of component
@@ -62,10 +64,10 @@ public class MainLogin extends JFrame implements ActionListener{
                 // Point p = scrollPane.getViewport().getViewPosition();
                 // g.drawImage(icon.getImage(), p.x, p.y, null);
                 setOpaque(false); //그림을 표시하게 설정,투명하게 조절
-                super.paintComponent(g);  
+                super.paintComponent(g);
             }
         };
-        
+
         id = new JTextField("ID");
         pw = new JTextField("PW");
 
@@ -120,8 +122,8 @@ public class MainLogin extends JFrame implements ActionListener{
         setBounds(100, 100, 1150, 600);
         setVisible(true);
     }
-    
-  //직원 메뉴
+
+    //직원 메뉴
     void Employee()
     {
         employeemenu = new JFrame("직원메뉴");
@@ -142,55 +144,53 @@ public class MainLogin extends JFrame implements ActionListener{
         membermenu.setBounds(100, 100, 500, 500);
         membermenu.setVisible(true);
     }
-    
+
     @Override
-	public void actionPerformed(ActionEvent e) {
-    	
-    	// 회원가입 -> 회원가입
-    	if(e.getSource() == register) {
-    		
-    		System.out.println("회원가입 버튼 클릭");
-    		registerGUI register = new registerGUI();
-    		super.setVisible(false);
-    	}
-    	
-		
-    	// 직원 체크박스 클릭후 로그인 -> 직원
-    	else if(employee.isSelected())
+    public void actionPerformed(ActionEvent e)
+    {
+        // 회원가입 -> 회원가입
+        if(e.getSource() == register)
+        {
+            System.out.println("회원가입 버튼 클릭");
+            new registerGUI();
+        }
+        // 직원 체크박스 클릭후 로그인 -> 직원
+        else if(employee.isSelected())
         {
             AuthDTO dto = new AuthDTO(id.getText(), pw.getText());
             boolean r = controller.SubControllerEX("AUTH", 2, dto, null);
             if(r)
             {
-            	employeeGUI emp = new employeeGUI();
-                
+                employeeGUI emp = new employeeGUI();
+                Employee();
             }
             else
             {
                 JOptionPane.showMessageDialog(null, "로그인 실패");
             }
-            
+
         }
-    	// 멤버 체크박스 클릭후 로그인 -> 멤버
-    	else if(member.isSelected())
+        // 멤버 체크박스 클릭후 로그인 -> 멤버
+        else if(member.isSelected())
+        {
+            AuthDTO dto = new AuthDTO(id.getText(), pw.getText());
+            boolean r = controller.SubControllerEX("AUTH", 1, dto, null);
+            if(r)
             {
-                AuthDTO dto = new AuthDTO(id.getText(), pw.getText());
-                boolean r = controller.SubControllerEX("AUTH", 1, dto, null);
-                if(r)
-                {
-                   memberGUI mem = new memberGUI();
-                   
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "로그인 실패");
-                }
+                memberGUI mem = new memberGUI();
+                Member();
             }
-    	
-    	// 종료 -> 종료
-    	if(e.getSource() == exit) {
-    		System.out.println("종료 버튼 클릭!");
-    		System.exit(-1);
-    	}	
+            else
+            {
+                JOptionPane.showMessageDialog(null, "로그인 실패");
+            }
+        }
+
+        // 종료 -> 종료
+        if(e.getSource() == exit)
+        {
+            System.out.println("종료 버튼 클릭!");
+            System.exit(-1);
+        }     
     }
 }
