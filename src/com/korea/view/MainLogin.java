@@ -191,6 +191,6 @@ public class MainLogin extends JFrame implements ActionListener
         {
             System.out.println("종료 버튼 클릭!");
             System.exit(-1);
-        }
+        }     
     }
 }
