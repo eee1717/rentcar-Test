@@ -145,16 +145,25 @@ public class MainLogin extends JFrame implements ActionListener{
     
     @Override
 	public void actionPerformed(ActionEvent e) {
+    	
+    	// 회원가입 -> 회원가입
+    	if(e.getSource() == register) {
+    		
+    		System.out.println("회원가입 버튼 클릭");
+    		registerGUI register = new registerGUI();
+    		super.setVisible(false);
+    	}
+    	
 		
     	// 직원 체크박스 클릭후 로그인 -> 직원
-    	if(employee.isSelected())
+    	else if(employee.isSelected())
         {
             AuthDTO dto = new AuthDTO(id.getText(), pw.getText());
             boolean r = controller.SubControllerEX("AUTH", 2, dto, null);
             if(r)
             {
             	employeeGUI emp = new employeeGUI();
-                Employee();
+                
             }
             else
             {
@@ -170,20 +179,14 @@ public class MainLogin extends JFrame implements ActionListener{
                 if(r)
                 {
                    memberGUI mem = new memberGUI();
-                    Member();
+                   
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(null, "로그인 실패");
                 }
             }
-    	// 회원가입 -> 회원가입
-    	if(e.getSource() == register) {
-    		
-    		System.out.println("회원가입 버튼 클릭");
-    		registerGUI register = new registerGUI();
-    		super.setVisible(false);
-    	}
+    	
     	// 종료 -> 종료
     	if(e.getSource() == exit) {
     		System.out.println("종료 버튼 클릭!");
