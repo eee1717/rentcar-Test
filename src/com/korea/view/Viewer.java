@@ -53,27 +53,7 @@ public class Viewer
                     boolean r2 = controller.SubControllerEX("Auth", 2, dto2, this);
                     if(r2)
                     {
-                        System.out.println("로그인 성공!");
-                        System.out.println("--------------Employee--------------");
-                        System.out.println("1 차량관리");
-                        System.out.println("2 회원관리");
-                        System.out.println("3 뒤로 가기");
-                        System.out.println("--------------Employee--------------");
-                        System.out.print("번호: ");
-                        num = sc.nextInt();
-                        switch(num)
-                        {
-                            case 1:
-                                CarMenu();
-                                break;
-                            case 2:
-                                MemberMenu();
-                                break;
-                            case 3:
-                                break;
-                            default:
-                                System.out.println("잘못 입력하셨습니다");
-                        }
+                        EmployeeMenu();
                     }
                     else
                     {
@@ -118,6 +98,35 @@ public class Viewer
         }
     }
 
+    public void EmployeeMenu()
+    {
+        while(true)
+        {
+            System.out.println("로그인 성공!");
+            System.out.println("--------------Employee--------------");
+            System.out.println("1 차량관리");
+            System.out.println("2 회원관리");
+            System.out.println("3 뒤로 가기");
+            System.out.println("--------------Employee--------------");
+            System.out.print("번호: ");
+            num = sc.nextInt();
+            switch(num)
+            {
+                case 1:
+                    CarMenu();
+                    break;
+                case 2:
+                    MemberMenu();
+                    break;
+                case 3:
+                    LoginMenu();
+                    break;
+                default:
+                    System.out.println("잘못 입력하셨습니다");
+            }
+        }
+    }
+
     public void MemberMenu()
     {
         while(true)
@@ -156,7 +165,7 @@ public class Viewer
                     }
                     break;
                 case 4:
-                    LoginMenu();
+                    EmployeeMenu();
                     break;
                 default:
                     System.out.println("잘못 입력하셨습니다");
@@ -242,7 +251,7 @@ public class Viewer
                     }
                     break;
                 case 6:
-                    LoginMenu();
+                    EmployeeMenu();
                     break;
                 default:
                     System.out.println("잘못입력하셨습니다.");
