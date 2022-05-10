@@ -1,29 +1,33 @@
 package com.korea.controller;
 
-import com.korea.dto.AuthDTO;
 import com.korea.dto.DTO;
-import com.korea.service.AuthService;
+import com.korea.dto.MemberDTO;
+import com.korea.service.MemberService;
 import com.korea.view.Viewer;
 
 public class MemberController implements SubController
 {
-    AuthService service = new AuthService();
+    MemberService service = new MemberService();
     @Override
     public boolean execute(int num, DTO dto, Viewer view)
     {
-        AuthDTO adto = (AuthDTO) dto;
+        MemberDTO mdto = (MemberDTO) dto;
 
         if(num == 1)
         {
-            return service.MemberSelect(adto, view);
+            return service.MemberSignUp(mdto);
         }
         else if(num == 2)
         {
-            return service.MemberSearch(adto, view);
+            return service.MemberSelect(mdto, view);
         }
         else if(num == 3)
         {
-            return service.MemberDelete(adto);
+            return service.MemberSearch(mdto, view);
+        }
+        else if(num == 4)
+        {
+            return service.MemberDelete(mdto);
         }
         return false;
     }

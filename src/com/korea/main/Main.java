@@ -1,13 +1,14 @@
 package com.korea.main;
 
-import com.korea.view.GUIViewer;
+import com.korea.view.MainLogin;
 import com.korea.view.Viewer;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        Viewer view1 = new Viewer();
-        view1.LoginMenu();
+//        Viewer view1 = new Viewer();
+//        view1.MainMenu();
+        new MainLogin();
     }
 }

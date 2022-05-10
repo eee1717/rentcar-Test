@@ -63,6 +63,25 @@ public class CarDAO extends DAO
         {
             e.printStackTrace();
         }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
         return false;
     }
 
@@ -88,6 +107,25 @@ public class CarDAO extends DAO
         {
             e.printStackTrace();
         }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
         return false;
     }
 
@@ -108,6 +146,25 @@ public class CarDAO extends DAO
         catch(Exception e)
         {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                pstmt.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
         return false;
     }

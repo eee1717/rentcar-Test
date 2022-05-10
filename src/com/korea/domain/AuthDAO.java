@@ -3,7 +3,6 @@ package com.korea.domain;
 import com.korea.dto.AuthDTO;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class AuthDAO extends DAO
 {
@@ -113,79 +112,9 @@ public class AuthDAO extends DAO
         return false;
     }
 
-    public boolean MemberSignUp(AuthDTO dto)
-    {
-        try
-        {
-            pstmt = conn.prepareStatement("insert into member_tbl values(?,?,?,?,?,?,?)");
-            pstmt.setString(1, dto.getId());
-            pstmt.setString(2, dto.getPw());
-            pstmt.setString(3, dto.getName());
-            pstmt.setInt(4, dto.getAge());
-            pstmt.setString(5,dto.getPhone());
-            pstmt.setString(6,dto.getAddr());
-            pstmt.setString(7,dto.getLicense());
 
-            int result = pstmt.executeUpdate();
 
-            if(result != 0)
-            {
-                return true;    // Insert 성공
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
-    public ResultSet MemberSelect()
-    {
-        try
-        {
-            pstmt = conn.prepareStatement("select * from member_tbl");
-            rs = pstmt.executeQuery();
-            return rs;
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
-    public ResultSet MemberSearch(AuthDTO dto)
-    {
-        try
-        {
-            pstmt = conn.prepareStatement("select * from member_tbl where Member_id like ?");
-            pstmt.setString(1, dto.getId());
-            rs = pstmt.executeQuery();
-            return rs;
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public boolean MemberDelete(AuthDTO dto)
-    {
-        try
-        {
-            pstmt = conn.prepareStatement("delete from member_tbl where Member_id = ?");
-            pstmt.setString(1, dto.getId());
-            int result = pstmt.executeUpdate();
-            if(result != 0)
-            {
-                return true;
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return false;
-    }
+
 }

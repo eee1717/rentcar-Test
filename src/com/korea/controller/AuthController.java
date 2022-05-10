@@ -23,11 +23,6 @@ public class AuthController implements SubController
             //직원로그인
             return service.EmployeeLogin(adto);
         }
-        else if(num == 3)
-        {
-            //회원가입
-            return service.MemberSignUp(adto);
-        }
         return false;
     }
 }

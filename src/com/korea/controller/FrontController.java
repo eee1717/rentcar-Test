@@ -3,7 +3,6 @@ package com.korea.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.korea.dto.AuthDTO;
 import com.korea.dto.DTO;
 import com.korea.view.Viewer;
 
