@@ -2,10 +2,17 @@ package com.korea.view;
 
 import java.awt.event.*;
 import javax.swing.*;
+
+import com.korea.controller.FrontController;
+import com.korea.dto.AuthDTO;
+
 import java.awt.*;
  
 public class MainLogin extends JFrame implements ActionListener{
-    JScrollPane scrollPane;
+    
+	FrontController controller = new FrontController();
+	
+	JScrollPane scrollPane;
     ImageIcon icon;
     
   //로그인 창 관련
@@ -39,7 +46,7 @@ public class MainLogin extends JFrame implements ActionListener{
  
     public MainLogin() {
     	 
-        super("RentCar");  
+        super("오래전부터 빌리고 싶었어");  
         
         icon = new ImageIcon("C:\\Users\\wjdwl\\OneDrive\\바탕 화면\\밈\\RentCar.png");
         //배경 Panel 생성후 컨텐츠페인으로 지정      
@@ -114,16 +121,62 @@ public class MainLogin extends JFrame implements ActionListener{
         setVisible(true);
     }
     
+  //직원 메뉴
+    void Employee()
+    {
+        employeemenu = new JFrame("직원메뉴");
+
+
+        employeemenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        employeemenu.setBounds(100, 100, 500, 500);
+        employeemenu.setVisible(true);
+    }
+
+    //회원 메뉴
+    void Member()
+    {
+        membermenu = new JFrame("회원메뉴");
+
+
+        membermenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        membermenu.setBounds(100, 100, 500, 500);
+        membermenu.setVisible(true);
+    }
     
     @Override
 	public void actionPerformed(ActionEvent e) {
 		
     	// 직원 체크박스 클릭후 로그인 -> 직원
-    	
+    	if(employee.isSelected())
+        {
+            AuthDTO dto = new AuthDTO(id.getText(), pw.getText());
+            boolean r = controller.SubControllerEX("AUTH", 2, dto, null);
+            if(r)
+            {
+            	employeeGUI emp = new employeeGUI();
+                Employee();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "로그인 실패");
+            }
+            
+        }
     	// 멤버 체크박스 클릭후 로그인 -> 멤버
-    	
-    	// 종료 -> 종료
-    	
+    	else if(member.isSelected())
+            {
+                AuthDTO dto = new AuthDTO(id.getText(), pw.getText());
+                boolean r = controller.SubControllerEX("AUTH", 1, dto, null);
+                if(r)
+                {
+                   memberGUI mem = new memberGUI();
+                    Member();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "로그인 실패");
+                }
+            }
     	// 회원가입 -> 회원가입
     	if(e.getSource() == register) {
     		
@@ -131,21 +184,10 @@ public class MainLogin extends JFrame implements ActionListener{
     		registerGUI register = new registerGUI();
     		super.setVisible(false);
     	}
-    	
+    	// 종료 -> 종료
     	if(e.getSource() == exit) {
     		System.out.println("종료 버튼 클릭!");
     		System.exit(-1);
-    	}
-		
+    	}	
     }
-    
-
-//public static void main(String[] args) {
-//  MainLogin frame = new MainLogin();
-//  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//  frame.setSize(1150, 600);
-//  frame.setVisible(true);
-//}
-
-
 }
