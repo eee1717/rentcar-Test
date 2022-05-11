@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 
 import java.util.*;
 
-public class employeeGUI implements ActionListener{
+public class EmployeeGUI implements ActionListener{
 	
 	//직원 메뉴 관련
     JFrame employeemenu;
@@ -22,13 +22,14 @@ public class employeeGUI implements ActionListener{
     JTextArea area;
     JScrollPane scroll;
 	
-	public employeeGUI()
+	public EmployeeGUI()
     {
         employeemenu = new JFrame("직원메뉴");
 
         
         employeemenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         employeemenu.setBounds(100, 100, 500, 500);
+		employeemenu.setResizable(false);
         employeemenu.setVisible(true);
         
         select = new JButton("차량 조회");
