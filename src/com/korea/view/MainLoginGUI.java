@@ -32,7 +32,7 @@ public class MainLoginGUI extends JFrame implements ActionListener
 
         super("오래전부터 빌리고 싶었어");
 
-        icon = new ImageIcon("C:\\Users\\rlatj\\IdeaProjects\\RentalCarProject\\src\\com\\korea\\view\\RentCar.png");
+        icon = new ImageIcon("C:\\Users\\1\\git\\RentalCarProject3\\src\\com\\korea\\view\\RentCar.png");
         //배경 Panel 생성후 컨텐츠페인으로 지정      
         JPanel background = new JPanel()
         {

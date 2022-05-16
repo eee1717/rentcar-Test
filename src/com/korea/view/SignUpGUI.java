@@ -48,7 +48,7 @@ public class SignUpGUI extends JFrame implements ActionListener
     {
         super("회원가입");
 
-        icon = new ImageIcon("C:\\Users\\rlatj\\IdeaProjects\\RentalCarProject\\src\\com\\korea\\view\\무지개 보노보노.jpg");
+        icon = new ImageIcon("C:\\Users\\1\\git\\RentalCarProject3\\src\\com\\korea\\view\\무지개 보노보노.jpg");
         //배경 Panel 생성후 컨텐츠페인으로 지정
         background = new JPanel()
         {
